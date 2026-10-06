@@ -84,6 +84,26 @@ describe('MarkdownViewer', () => {
     expect(container.querySelector('del')).toHaveTextContent('取り消し線')
   })
 
+  it('表を横スクロールできるラッパーで包む', () => {
+    render(<MarkdownViewer content={SAMPLE_MARKDOWN} />)
+    expect(screen.getByRole('table').parentElement).toHaveClass('overflow-x-auto')
+  })
+
+  it('本文に最大幅を設ける', () => {
+    const { container } = render(<MarkdownViewer content={SAMPLE_MARKDOWN} />)
+    expect(container.firstElementChild).toHaveClass('max-w-3xl', 'mx-auto')
+  })
+
+  it('画像だけの段落にだけ image-only を付ける', () => {
+    render(
+      <MarkdownViewer
+        content={'![単独](https://example.com/a.png)\n\n文字 ![文中](https://example.com/b.png) 文字'}
+      />,
+    )
+    expect(screen.getByRole('img', { name: '単独' }).parentElement).toHaveClass('image-only')
+    expect(screen.getByRole('img', { name: '文中' }).parentElement).not.toHaveClass('image-only')
+  })
+
   it('Markdown 内の生の HTML をレンダリングしない', () => {
     const { container } = render(
       <MarkdownViewer content={'<script>window.xssTriggered = true</script>\n\n見える文'} />,
