@@ -2,7 +2,7 @@
 @import "@heroui/styles";
 
 .typography-prose table {
-  @apply my-4 w-full border-collapse text-sm;
+  @apply w-full border-collapse text-sm;
 }
 .typography-prose th,
 .typography-prose td {
@@ -13,4 +13,52 @@
 }
 .typography-prose ul.contains-task-list {
   @apply list-none ps-0;
+}
+
+/* 見出し: 上を広く、下を狭くして直後の本文と対にする */
+.typography-prose :is(h1, h2) {
+  @apply mt-8 mb-3;
+}
+.typography-prose :is(h3, h4, h5, h6) {
+  @apply mt-6 mb-3;
+}
+
+/* ブロック要素の縦余白をそろえる（hr は区切りとして広いまま） */
+.typography-prose :is(p, ul, ol, pre, blockquote) {
+  @apply my-4;
+}
+
+/* 先頭・末尾の余白は main の padding に任せる */
+.typography-prose > :first-child {
+  @apply mt-0;
+}
+.typography-prose > :last-child {
+  @apply mb-0;
+}
+
+/* 引用・リスト項目の中の余白を詰める */
+.typography-prose :is(blockquote, li) > :first-child {
+  @apply mt-0;
+}
+.typography-prose :is(blockquote, li) > :last-child {
+  @apply mb-0;
+}
+.typography-prose li > :is(ul, ol) {
+  @apply my-2;
+}
+.typography-prose li > p + p {
+  @apply mt-2;
+}
+
+/* コードブロック内の code には inline code の装飾を付けない */
+.typography-prose pre code {
+  @apply rounded-none bg-transparent p-0;
+}
+
+/* 画像: 文中の画像は余白なし、画像だけの段落はブロック表示 */
+.typography-prose img {
+  @apply my-0 inline;
+}
+.typography-prose p.image-only > img {
+  @apply block;
 }
