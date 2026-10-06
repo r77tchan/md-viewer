@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+import { buildToc } from '../lib/toc'
 import { MarkdownViewer } from './MarkdownViewer'
 
 const SAMPLE_MARKDOWN = `# 見出し
@@ -117,5 +118,16 @@ describe('MarkdownViewer', () => {
       <MarkdownViewer content={'<img src="x" onerror="window.xssTriggered = true">'} />,
     )
     expect(container.querySelector('img[onerror]')).toBeNull()
+  })
+})
+
+describe('MarkdownViewer の見出し ID', () => {
+  it('h1〜h3 には目次と同じ ID を付け、h4 以降には付けない', () => {
+    const content = '# A\n\n## 同じ\n\n### 同じ\n\n#### 深い'
+    render(<MarkdownViewer content={content} />)
+    const ids = buildToc(content).map((item) => item.id)
+    const headings = screen.getAllByRole('heading')
+    expect(headings.slice(0, 3).map((h) => h.id)).toEqual(ids)
+    expect(headings[3].id).toBe('')
   })
 })
