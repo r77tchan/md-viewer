@@ -1,7 +1,9 @@
 import { Prose } from '@heroui/react'
 import ReactMarkdown from 'react-markdown'
 import type { Components } from 'react-markdown'
+import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm'
+import { highlightAliases, highlightLanguages } from '../lib/highlightLanguages'
 import { headingId } from '../lib/toc'
 
 type MarkdownViewerProps = {
@@ -45,7 +47,13 @@ const components: Components = {
 export function MarkdownViewer({ content }: MarkdownViewerProps) {
   return (
     <Prose className="mx-auto w-full max-w-3xl">
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[
+          [rehypeHighlight, { languages: highlightLanguages, aliases: highlightAliases }],
+        ]}
+        components={components}
+      >
         {content}
       </ReactMarkdown>
     </Prose>

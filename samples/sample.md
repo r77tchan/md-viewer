@@ -38,6 +38,61 @@ function greet(name) {
 }
 ```
 
+```ts
+type User = { name: string; age?: number }
+const users: User[] = [{ name: 'Alice' }] // コメント
+```
+
+```python
+def fib(n: int) -> int:
+    """フィボナッチ数"""
+    return n if n < 2 else fib(n - 1) + fib(n - 2)
+```
+
+```sh
+# 依存を入れて起動する
+npm install && npm run dev
+```
+
+```json
+{ "name": "md-viewer", "private": true, "version": 1 }
+```
+
+```html
+<a href="https://example.com" class="link">リンク</a>
+```
+
+```css
+.link:hover { color: #0550ae; margin: 0 4px; }
+```
+
+```md
+# 見出し
+- **強調** と `code`
+```
+
+```yaml
+name: ci
+on: [pull_request]
+```
+
+```diff
+- 古い行
++ 新しい行
+```
+
+言語の指定がないコードブロック:
+
+```
+const plain = 'no highlight'
+```
+
+対応していない言語のコードブロック:
+
+```go
+func main() { println("hello") }
+```
+
 ## 引用
 
 > Markdown はプレーンテキストで書ける軽量マークアップ言語です。
