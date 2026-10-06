@@ -39,7 +39,11 @@ function App() {
         headerActions={
           <>
             <FileOpenButton onOpen={openFile} />
-            {openedDocument && <span>{openedDocument.fileName}</span>}
+            {openedDocument && (
+              <span className="min-w-0 truncate" title={openedDocument.fileName}>
+                {openedDocument.fileName}
+              </span>
+            )}
           </>
         }
       >
