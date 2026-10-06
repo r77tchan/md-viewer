@@ -1,2 +1,16 @@
 @import "tailwindcss";
 @import "@heroui/styles";
+
+.typography-prose table {
+  @apply my-4 w-full border-collapse text-sm;
+}
+.typography-prose th,
+.typography-prose td {
+  @apply border border-border px-3 py-2 text-start;
+}
+.typography-prose thead {
+  @apply bg-surface-secondary;
+}
+.typography-prose ul.contains-task-list {
+  @apply list-none ps-0;
+}
