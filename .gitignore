@@ -33,3 +33,8 @@ yarn-debug.log*
 yarn-error.log*
 dist/
 build/
+
+# Vite
+dist-ssr/
+*.local
+*.tsbuildinfo
