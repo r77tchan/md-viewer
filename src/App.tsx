@@ -38,7 +38,9 @@ function App() {
       <Layout
         headerActions={
           <>
-            <FileOpenButton onOpen={openFile} />
+            <div className="shrink-0">
+              <FileOpenButton onOpen={openFile} />
+            </div>
             {openedDocument && (
               <span className="min-w-0 truncate" title={openedDocument.fileName}>
                 {openedDocument.fileName}

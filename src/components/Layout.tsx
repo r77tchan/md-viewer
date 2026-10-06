@@ -13,7 +13,9 @@ export function Layout({ children, headerActions }: LayoutProps) {
         <h1 className="shrink-0 whitespace-nowrap text-xl font-bold">md-viewer</h1>
         <div className="flex min-w-0 items-center gap-2 sm:gap-4">
           {headerActions}
-          <ThemeToggle />
+          <div className="shrink-0">
+            <ThemeToggle />
+          </div>
         </div>
       </header>
       <main className="flex flex-1 flex-col p-6">{children}</main>
