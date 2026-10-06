@@ -56,3 +56,23 @@ describe('App', () => {
     ).toBeInTheDocument()
   })
 })
+
+describe('App の目次', () => {
+  async function openContent(content: string) {
+    const user = userEvent.setup()
+    render(<App />)
+    const input = document.querySelector('input[type="file"]') as HTMLInputElement
+    await user.upload(input, new File([content], 'toc.md', { type: 'text/markdown' }))
+    await screen.findByText('toc.md')
+  }
+
+  it('見出しのあるファイルを開くと目次を表示する', async () => {
+    await openContent('# 題\n\n## 節')
+    expect(screen.getByRole('navigation', { name: '目次' })).toBeInTheDocument()
+  })
+
+  it('見出しのないファイルでは目次を表示しない', async () => {
+    await openContent('本文だけ')
+    expect(screen.queryByRole('navigation', { name: '目次' })).toBeNull()
+  })
+})
