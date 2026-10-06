@@ -62,3 +62,57 @@
 .typography-prose p.image-only > img {
   @apply block;
 }
+
+/* コードのシンタックスハイライト: 配色は CSS 変数で持ち、ダークは .dark で上書きする */
+:root {
+  --hl-comment: #5b6570;
+  --hl-keyword: #cf222e;
+  --hl-string: #0a3069;
+  --hl-number: #0550ae;
+  --hl-title: #8250df;
+  --hl-built-in: #953800;
+  --hl-addition: #116329;
+  --hl-deletion: #82071e;
+}
+.dark,
+[data-theme="dark"] {
+  --hl-comment: #9aa4af;
+  --hl-keyword: #ff7b72;
+  --hl-string: #a5d6ff;
+  --hl-number: #79c0ff;
+  --hl-title: #d2a8ff;
+  --hl-built-in: #ffa657;
+  --hl-addition: #7ee787;
+  --hl-deletion: #ffa198;
+}
+.typography-prose :is(.hljs-comment, .hljs-quote) {
+  color: var(--hl-comment);
+  font-style: italic;
+}
+.typography-prose :is(.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-doctag, .hljs-name) {
+  color: var(--hl-keyword);
+}
+.typography-prose :is(.hljs-string, .hljs-regexp, .hljs-meta .hljs-string, .hljs-symbol, .hljs-bullet) {
+  color: var(--hl-string);
+}
+.typography-prose :is(.hljs-number, .hljs-attr, .hljs-attribute, .hljs-variable, .hljs-property, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-id, .hljs-template-variable) {
+  color: var(--hl-number);
+}
+.typography-prose :is(.hljs-title, .hljs-section, .hljs-link) {
+  color: var(--hl-title);
+}
+.typography-prose :is(.hljs-built_in, .hljs-type, .hljs-class, .hljs-meta) {
+  color: var(--hl-built-in);
+}
+.typography-prose .hljs-addition {
+  color: var(--hl-addition);
+}
+.typography-prose .hljs-deletion {
+  color: var(--hl-deletion);
+}
+.typography-prose .hljs-emphasis {
+  font-style: italic;
+}
+.typography-prose .hljs-strong {
+  font-weight: 600;
+}

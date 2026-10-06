@@ -54,8 +54,8 @@ describe('MarkdownViewer', () => {
   })
 
   it('コードブロックを表示する', () => {
-    render(<MarkdownViewer content={SAMPLE_MARKDOWN} />)
-    expect(screen.getByText('const x = 1')).toBeInTheDocument()
+    const { container } = render(<MarkdownViewer content={SAMPLE_MARKDOWN} />)
+    expect(container.querySelector('pre code')).toHaveTextContent('const x = 1')
   })
 
   it('引用を表示する', () => {
