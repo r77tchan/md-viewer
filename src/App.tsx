@@ -4,7 +4,7 @@ import { DropOverlay } from './components/DropOverlay'
 import { EmptyState } from './components/EmptyState'
 import { FileOpenButton } from './components/FileOpenButton'
 import { Layout } from './components/Layout'
-import { MarkdownViewer } from './components/MarkdownViewer'
+import { DocumentView } from './components/DocumentView'
 import { useWindowFileDrop } from './hooks/useWindowFileDrop'
 import { isMarkdownFileName, readMarkdownFile } from './lib/markdownFile'
 
@@ -48,7 +48,7 @@ function App() {
             {errorMessage}
           </Alert>
         )}
-        {openedDocument ? <MarkdownViewer content={openedDocument.content} /> : <EmptyState />}
+        {openedDocument ? <DocumentView key={openedDocument.fileName} content={openedDocument.content} /> : <EmptyState />}
       </Layout>
       {isDraggingOver && <DropOverlay />}
     </>

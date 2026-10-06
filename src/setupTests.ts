@@ -11,6 +11,10 @@ if (!window.matchMedia) {
   })) as unknown as typeof window.matchMedia
 }
 
+if (!Element.prototype.scrollIntoView) {
+  Element.prototype.scrollIntoView = () => {}
+}
+
 afterEach(() => {
   cleanup()
   localStorage.clear()
